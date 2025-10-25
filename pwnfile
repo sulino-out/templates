@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Simple shellscript for creating a standard file for pwn challs
+
+if [ "$#" -lt 1 ];
+then
+	echo "Usage: pwnfile [--OPTIONS] ... [file]" >&2
+	exit 2
+fi
+
+echo "from pwn import *
+
+# ---- Headers ----
+HOST = ''
+PORT = 
+
+context.terminal = '$(echo "$TERM" | sed "s/xterm-//g")'
+elf = context.binary = ELF('', checksec='False')
+rop_elf = ROP(elf)
+
+remote_acess = False
+attach_gdb = False
+
+if remote_acess:
+    io = remote(HOST, PORT)
+else:
+    io = process()
+    if attach_gdb:
+        gdb.attach(io, gdbscript='''
+        c
+        ''')
+
+# ---- Functions ----
+
+
+
+# ---- Scripting ----
+def main():
+     
+
+if __name__ == '__main__':
+    main()
+" > $1
+
+echo "'$1' created successfully"
+nvim -c "normal! 29G A" -c "startinsert" $1
