@@ -15,7 +15,7 @@ HOST = ''
 PORT = 
 
 context.terminal = '$(echo "$TERM" | sed "s/xterm-//g")'
-elf = context.binary = ELF('', checksec='False')
+elf = context.binary = ELF('', checksec=False)
 rop_elf = ROP(elf)
 
 remote_acess = False
